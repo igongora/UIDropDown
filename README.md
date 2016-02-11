@@ -16,6 +16,13 @@ Use UIDropDown it's as easy as set the array of strings you want to show and a p
         self.view.addSubview(drop) 
 ```
 
+The delegate method will return the string and index selected
+```swift
+    func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
+        
+    }
+```
+
 ## Requirements
 
 - iOS 8.0+
