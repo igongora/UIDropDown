@@ -14,6 +14,9 @@
 		0E4DE99E1BF6A7F80037F30E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E4DE99C1BF6A7F80037F30E /* LaunchScreen.storyboard */; };
 		0E4DE9A91BF6A7F80037F30E /* UIDropDownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9A81BF6A7F80037F30E /* UIDropDownTests.swift */; };
 		0E4DE9B41BF6A7F80037F30E /* UIDropDownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9B31BF6A7F80037F30E /* UIDropDownUITests.swift */; };
+		0E4DE9C31BF6A8970037F30E /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */; };
+		0EA1C6701C2B78DE00D11972 /* Ionicons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */; };
+		0EA1C6721C2B794B00D11972 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1C6711C2B794B00D11972 /* ionicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		0E4DE9AF1BF6A7F80037F30E /* UIDropDownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIDropDownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4DE9B31BF6A7F80037F30E /* UIDropDownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDropDownUITests.swift; sourceTree = "<group>"; };
 		0E4DE9B51BF6A7F80037F30E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIDropDown.swift; sourceTree = "<group>"; };
+		0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ionicons.swift; sourceTree = "<group>"; };
+		0EA1C6711C2B794B00D11972 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		0E4DE9921BF6A7F80037F30E /* UIDropDown */ = {
 			isa = PBXGroup;
 			children = (
+				0E4DE9C11BF6A84E0037F30E /* UIDropDown */,
 				0E4DE9931BF6A7F80037F30E /* AppDelegate.swift */,
 				0E4DE9951BF6A7F80037F30E /* ViewController.swift */,
 				0E4DE9971BF6A7F80037F30E /* Main.storyboard */,
@@ -110,6 +117,7 @@
 		0E4DE9A71BF6A7F80037F30E /* UIDropDownTests */ = {
 			isa = PBXGroup;
 			children = (
+				0EA1C6711C2B794B00D11972 /* ionicons.ttf */,
 				0E4DE9A81BF6A7F80037F30E /* UIDropDownTests.swift */,
 				0E4DE9AA1BF6A7F80037F30E /* Info.plist */,
 			);
@@ -123,6 +131,15 @@
 				0E4DE9B51BF6A7F80037F30E /* Info.plist */,
 			);
 			path = UIDropDownUITests;
+			sourceTree = "<group>";
+		};
+		0E4DE9C11BF6A84E0037F30E /* UIDropDown */ = {
+			isa = PBXGroup;
+			children = (
+				0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */,
+				0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */,
+			);
+			name = UIDropDown;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +248,7 @@
 			files = (
 				0E4DE99E1BF6A7F80037F30E /* LaunchScreen.storyboard in Resources */,
 				0E4DE99B1BF6A7F80037F30E /* Assets.xcassets in Resources */,
+				0EA1C6721C2B794B00D11972 /* ionicons.ttf in Resources */,
 				0E4DE9991BF6A7F80037F30E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,8 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E4DE9C31BF6A8970037F30E /* UIDropDown.swift in Sources */,
 				0E4DE9961BF6A7F80037F30E /* ViewController.swift in Sources */,
 				0E4DE9941BF6A7F80037F30E /* AppDelegate.swift in Sources */,
+				0EA1C6701C2B78DE00D11972 /* Ionicons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIDropDown/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -409,6 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = UIDropDown/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -482,6 +504,7 @@
 				0E4DE9BA1BF6A7F80037F30E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0E4DE9BB1BF6A7F80037F30E /* Build configuration list for PBXNativeTarget "UIDropDownTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +513,7 @@
 				0E4DE9BD1BF6A7F80037F30E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0E4DE9BE1BF6A7F80037F30E /* Build configuration list for PBXNativeTarget "UIDropDownUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +522,7 @@
 				0E4DE9C01BF6A7F80037F30E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
