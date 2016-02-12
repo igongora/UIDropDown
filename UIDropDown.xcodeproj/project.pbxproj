@@ -88,12 +88,12 @@
 				0E0664611C6D634F0088B808 /* UIDropDownGif.gif */,
 			);
 			name = Resources;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		0E4DE9871BF6A7F70037F30E = {
 			isa = PBXGroup;
 			children = (
-				0E0664601C6D63310088B808 /* Resources */,
 				0E4DE9921BF6A7F80037F30E /* UIDropDown */,
 				0E4DE9A71BF6A7F80037F30E /* UIDropDownTests */,
 				0E4DE9B21BF6A7F80037F30E /* UIDropDownUITests */,
@@ -121,6 +121,7 @@
 				0E4DE99A1BF6A7F80037F30E /* Assets.xcassets */,
 				0E4DE99C1BF6A7F80037F30E /* LaunchScreen.storyboard */,
 				0E4DE99F1BF6A7F80037F30E /* Info.plist */,
+				0E0664601C6D63310088B808 /* Resources */,
 			);
 			path = UIDropDown;
 			sourceTree = "<group>";
