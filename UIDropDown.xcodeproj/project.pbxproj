@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E0664621C6D634F0088B808 /* UIDropDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 0E0664611C6D634F0088B808 /* UIDropDownGif.gif */; };
 		0E4DE9941BF6A7F80037F30E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9931BF6A7F80037F30E /* AppDelegate.swift */; };
 		0E4DE9961BF6A7F80037F30E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9951BF6A7F80037F30E /* ViewController.swift */; };
 		0E4DE9991BF6A7F80037F30E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E4DE9971BF6A7F80037F30E /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E0664611C6D634F0088B808 /* UIDropDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = UIDropDownGif.gif; sourceTree = "<group>"; };
 		0E4DE9901BF6A7F70037F30E /* UIDropDown.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIDropDown.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E4DE9931BF6A7F80037F30E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E4DE9951BF6A7F80037F30E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -80,9 +82,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E0664601C6D63310088B808 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0E0664611C6D634F0088B808 /* UIDropDownGif.gif */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		0E4DE9871BF6A7F70037F30E = {
 			isa = PBXGroup;
 			children = (
+				0E0664601C6D63310088B808 /* Resources */,
 				0E4DE9921BF6A7F80037F30E /* UIDropDown */,
 				0E4DE9A71BF6A7F80037F30E /* UIDropDownTests */,
 				0E4DE9B21BF6A7F80037F30E /* UIDropDownUITests */,
@@ -249,6 +260,7 @@
 				0E4DE99E1BF6A7F80037F30E /* LaunchScreen.storyboard in Resources */,
 				0E4DE99B1BF6A7F80037F30E /* Assets.xcassets in Resources */,
 				0EA1C6721C2B794B00D11972 /* ionicons.ttf in Resources */,
+				0E0664621C6D634F0088B808 /* UIDropDownGif.gif in Resources */,
 				0E4DE9991BF6A7F80037F30E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
