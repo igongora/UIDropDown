@@ -16,25 +16,29 @@ class ViewController: UIViewController, UIDropDownDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        drop = UIDropDown(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
-        drop.center = CGPoint(x: CGRectGetMidX(self.view.frame), y: CGRectGetMidY(self.view.frame))
+        drop = UIDropDown(frame: CGRect(x: 85, y: 270, width: 150, height: 30))
         drop.delegate = self
-        drop.options = ["Mexico", "EUA", "England", "France", "Germany", "Spain", "Italy", "Canada"]
         drop.placeholder = "Select a country..."
+        drop.options = ["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"]
+        
+        drop.didSelect { (option, index) in
+            print("Option: \(option) @ index: \(index)")
+        }
+        
         self.view.addSubview(drop)
         
-        segmented.addTarget(self, action: "segmentedDidChange:", forControlEvents: .ValueChanged)
+        segmented.addTarget(self, action: #selector(ViewController.segmentedDidChange(_:)), for: .valueChanged)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         drop.resignFirstResponder()
     }
     
-    func segmentedDidChange(sender: UISegmentedControl) {
+    func segmentedDidChange(_ sender: UISegmentedControl) {
     
         let index = sender.selectedSegmentIndex
         drop.animationType = UIDropDownAnimationType(rawValue: index)!
@@ -42,7 +46,7 @@ class ViewController: UIViewController, UIDropDownDelegate {
     
     // UIDropDown Delegate
     
-    func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
+    func dropDown(_ dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int) {
         print("Selected option: \(option) at index: \(index)")
     }
 }

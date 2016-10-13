@@ -14,10 +14,7 @@
 		0E4DE99B1BF6A7F80037F30E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E4DE99A1BF6A7F80037F30E /* Assets.xcassets */; };
 		0E4DE99E1BF6A7F80037F30E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E4DE99C1BF6A7F80037F30E /* LaunchScreen.storyboard */; };
 		0E4DE9A91BF6A7F80037F30E /* UIDropDownTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9A81BF6A7F80037F30E /* UIDropDownTests.swift */; };
-		0E4DE9B41BF6A7F80037F30E /* UIDropDownUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9B31BF6A7F80037F30E /* UIDropDownUITests.swift */; };
 		0E4DE9C31BF6A8970037F30E /* UIDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */; };
-		0EA1C6701C2B78DE00D11972 /* Ionicons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */; };
-		0EA1C6721C2B794B00D11972 /* ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1C6711C2B794B00D11972 /* ionicons.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +47,7 @@
 		0E4DE9A81BF6A7F80037F30E /* UIDropDownTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDropDownTests.swift; sourceTree = "<group>"; };
 		0E4DE9AA1BF6A7F80037F30E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E4DE9AF1BF6A7F80037F30E /* UIDropDownUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UIDropDownUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0E4DE9B31BF6A7F80037F30E /* UIDropDownUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDropDownUITests.swift; sourceTree = "<group>"; };
-		0E4DE9B51BF6A7F80037F30E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = UIDropDown.swift; sourceTree = "<group>"; };
-		0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ionicons.swift; sourceTree = "<group>"; };
-		0EA1C6711C2B794B00D11972 /* ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ionicons.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +89,6 @@
 			children = (
 				0E4DE9921BF6A7F80037F30E /* UIDropDown */,
 				0E4DE9A71BF6A7F80037F30E /* UIDropDownTests */,
-				0E4DE9B21BF6A7F80037F30E /* UIDropDownUITests */,
 				0E4DE9911BF6A7F70037F30E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,26 +121,15 @@
 		0E4DE9A71BF6A7F80037F30E /* UIDropDownTests */ = {
 			isa = PBXGroup;
 			children = (
-				0EA1C6711C2B794B00D11972 /* ionicons.ttf */,
 				0E4DE9A81BF6A7F80037F30E /* UIDropDownTests.swift */,
 				0E4DE9AA1BF6A7F80037F30E /* Info.plist */,
 			);
 			path = UIDropDownTests;
 			sourceTree = "<group>";
 		};
-		0E4DE9B21BF6A7F80037F30E /* UIDropDownUITests */ = {
-			isa = PBXGroup;
-			children = (
-				0E4DE9B31BF6A7F80037F30E /* UIDropDownUITests.swift */,
-				0E4DE9B51BF6A7F80037F30E /* Info.plist */,
-			);
-			path = UIDropDownUITests;
-			sourceTree = "<group>";
-		};
 		0E4DE9C11BF6A84E0037F30E /* UIDropDown */ = {
 			isa = PBXGroup;
 			children = (
-				0EA1C66F1C2B78DE00D11972 /* Ionicons.swift */,
 				0E4DE9C21BF6A8970037F30E /* UIDropDown.swift */,
 			);
 			name = UIDropDown;
@@ -217,18 +198,21 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Isaac Gongora";
 				TargetAttributes = {
 					0E4DE98F1BF6A7F70037F30E = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 					};
 					0E4DE9A31BF6A7F80037F30E = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 0E4DE98F1BF6A7F70037F30E;
 					};
 					0E4DE9AE1BF6A7F80037F30E = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0800;
 						TestTargetID = 0E4DE98F1BF6A7F70037F30E;
 					};
 				};
@@ -260,7 +244,6 @@
 			files = (
 				0E4DE99E1BF6A7F80037F30E /* LaunchScreen.storyboard in Resources */,
 				0E4DE99B1BF6A7F80037F30E /* Assets.xcassets in Resources */,
-				0EA1C6721C2B794B00D11972 /* ionicons.ttf in Resources */,
 				0E0664621C6D634F0088B808 /* UIDropDownGif.gif in Resources */,
 				0E4DE9991BF6A7F80037F30E /* Main.storyboard in Resources */,
 			);
@@ -290,7 +273,6 @@
 				0E4DE9C31BF6A8970037F30E /* UIDropDown.swift in Sources */,
 				0E4DE9961BF6A7F80037F30E /* ViewController.swift in Sources */,
 				0E4DE9941BF6A7F80037F30E /* AppDelegate.swift in Sources */,
-				0EA1C6701C2B78DE00D11972 /* Ionicons.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,7 +288,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E4DE9B41BF6A7F80037F30E /* UIDropDownUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -358,8 +339,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -402,8 +385,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -422,6 +407,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -435,6 +421,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -447,6 +434,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDown;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -458,6 +446,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDownTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIDropDown.app/UIDropDown";
 			};
 			name = Debug;
@@ -470,6 +459,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDownTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UIDropDown.app/UIDropDown";
 			};
 			name = Release;
@@ -481,6 +471,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDownUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UIDropDown;
 				USES_XCTRUNNER = YES;
 			};
@@ -493,6 +484,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = IsaacGongora.UIDropDownUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = UIDropDown;
 				USES_XCTRUNNER = YES;
 			};

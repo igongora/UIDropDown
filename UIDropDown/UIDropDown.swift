@@ -9,23 +9,23 @@
 import UIKit
 
 enum UIDropDownAnimationType : Int {
-    case Default
-    case Bouncing
+    case `default`
+    case bouncing
 }
 
 @objc protocol UIDropDownDelegate {
-    func dropDown(dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int)
-    optional func dropDownTableWillAppear(dropDown: UIDropDown)
-    optional func dropDownTableDidAppear(dropDown: UIDropDown)
-    optional func dropDownTableWillDisappear(dropDown: UIDropDown)
-    optional func dropDownTableDidDisappear(dropDown: UIDropDown)
+    func dropDown(_ dropDown: UIDropDown, didSelectOption option: String, atIndex index: Int)
+    @objc optional func dropDownTableWillAppear(_ dropDown: UIDropDown)
+    @objc optional func dropDownTableDidAppear(_ dropDown: UIDropDown)
+    @objc optional func dropDownTableWillDisappear(_ dropDown: UIDropDown)
+    @objc optional func dropDownTableDidDisappear(_ dropDown: UIDropDown)
 }
 
 class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
     
-    private var title: UILabel!
-    private var arrow: UILabel!
-    private var table: UITableView!
+    fileprivate var title: UILabel!
+    fileprivate var arrow: UILabel!
+    fileprivate var table: UITableView!
     var selectedIndex: Int?
     var font: UIFont! {
         didSet {
@@ -34,7 +34,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
     }
     var options = NSMutableArray()
     var delegate: UIDropDownDelegate!
-    var animationType: UIDropDownAnimationType = .Default
+    var animationType: UIDropDownAnimationType = .default
     var hideOptionsWhenSelect = false
     var placeholder: String! {
         didSet {
@@ -49,6 +49,8 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+    // Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -59,38 +61,39 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         setup()
     }
     
+    // Class methods
+    
     func setup() {
     
         self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
-        self.layer.borderColor = UIColor.blackColor().CGColor
-        self.backgroundColor = .whiteColor()
+        self.layer.borderColor = UIColor.black.cgColor
+        self.backgroundColor = .white
         
-        title = UILabel(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(self.frame)-30, height: CGRectGetHeight(self.frame)))
-        title.textAlignment = .Center
-        title.backgroundColor = .clearColor()
+        title = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width-30, height: self.frame.height))
+        title.textAlignment = .center
+        title.backgroundColor = .clear
         title.font = font
         self.addSubview(title)
         
-        arrow = UILabel(frame: CGRect(x: CGRectGetMaxX(title.frame), y: 0, width: 30, height: CGRectGetHeight(self.frame)))
-        arrow.textAlignment = .Center
-        arrow.font = UIFont.ioniconOfSize(20)
-        arrow.text = String.ioniconWithName(.IosArrowDown)
-        arrow.backgroundColor = .clearColor()
+        arrow = UILabel(frame: CGRect(x: title.frame.maxX, y: 0, width: 30, height: self.frame.height))
+        arrow.textAlignment = .center
+        //arrow.font = UIFont.ioniconOfSize(20)
+        //arrow.text = String.ioniconWithName(.IosArrowDown)
+        arrow.backgroundColor = .clear
         self.addSubview(arrow)
-        self.addTarget(self, action: "touch", forControlEvents: .TouchUpInside)
+        self.addTarget(self, action: #selector(UIDropDown.touch), for: .touchUpInside)
     }
     
     func touch() {
-    
-        selected = !selected
-        self.userInteractionEnabled = false
-        selected ? showTable() : hideTable()
+        isSelected = !isSelected
+        self.isUserInteractionEnabled = false
+        isSelected ? showTable() : hideTable()
     }
     
     override func resignFirstResponder() -> Bool {
         
-        if selected {
+        if isSelected {
             hideTable()
         }
         
@@ -101,47 +104,47 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         
         delegate.dropDownTableWillAppear?(self)
         
-        table = UITableView(frame: CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMinY(self.frame), width: CGRectGetWidth(self.frame), height: CGRectGetHeight(self.frame)))
+        table = UITableView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: self.frame.height))
         table.dataSource = self
         table.delegate = self
         table.layer.cornerRadius = 5.0
         table.layer.borderWidth = 1.0
-        table.layer.borderColor = UIColor.blackColor().CGColor
+        table.layer.borderColor = UIColor.black.cgColor
         table.alpha = 0
         self.superview?.insertSubview(table, belowSubview: self)
         
-        UIView.animateWithDuration(0.2) { () -> Void in
-            self.arrow.transform = CGAffineTransformMakeRotation((180.0 * CGFloat(M_PI)) / 180.0)
-        }
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.arrow.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
+        }) 
         
         switch animationType {
         
-        case .Default:
+        case .default:
             
-            UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionFlipFromTop, animations: { () -> Void in
+            UIView.animate(withDuration: 0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .transitionFlipFromTop, animations: { () -> Void in
                 
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.frame = CGRect(x: self.frame.minX, y: self.frame.maxY+5, width: self.frame.width, height: 100)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in
-                    self.userInteractionEnabled = true
+                    self.isUserInteractionEnabled = true
                     self.delegate.dropDownTableDidAppear?(self)
             })
             
             break
             
-        case .Bouncing:
+        case .bouncing:
             
-            table.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
+            table.transform = CGAffineTransform.identity.scaledBy(x: 0.001, y: 0.001)
             
-            UIView.animateWithDuration(0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionCurlUp, animations: { () -> Void in
+            UIView.animate(withDuration: 0.9, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .transitionCurlUp, animations: { () -> Void in
                 
-                self.table.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1)
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMaxY(self.frame)+5, width: CGRectGetWidth(self.frame), height: 100)
+                self.table.transform = CGAffineTransform.identity.scaledBy(x: 1, y: 1)
+                self.table.frame = CGRect(x: self.frame.minX, y: self.frame.maxY+5, width: self.frame.width, height: 100)
                 self.table.alpha = 1
                 
                 }, completion: { (didFinish) -> Void in
-                    self.userInteractionEnabled = true
+                    self.isUserInteractionEnabled = true
                     self.delegate.dropDownTableDidAppear?(self)
             })
             
@@ -153,76 +156,83 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         
         delegate.dropDownTableWillDisappear?(self)
         
-        UIView.animateWithDuration(0.2) { () -> Void in
-            self.arrow.transform = CGAffineTransformMakeRotation(0)
-        }
+        UIView.animate(withDuration: 0.2, animations: { () -> Void in
+            self.arrow.transform = CGAffineTransform(rotationAngle: 0)
+        }) 
         
         switch animationType {
         
-        case .Default:
+        case .default:
             
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionFlipFromBottom, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .transitionFlipFromBottom, animations: { () -> Void in
                 
-                self.table.frame = CGRect(x: CGRectGetMinX(self.frame), y: CGRectGetMinY(self.frame), width: CGRectGetWidth(self.frame), height: 0)
+                self.table.frame = CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: 0)
                 self.table.alpha = 0
                 
                 }, completion: { (didFinish) -> Void in
                     
                     self.table.removeFromSuperview()
-                    self.userInteractionEnabled = true
-                    self.selected = false
+                    self.isUserInteractionEnabled = true
+                    self.isSelected = false
                     self.delegate.dropDownTableDidDisappear?(self)
             })
             
             break
             
-        case .Bouncing:
+        case .bouncing:
             
-            UIView.animateWithDuration(0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .TransitionCurlUp, animations: { () -> Void in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.1, options: .transitionCurlUp, animations: { () -> Void in
                 
-                self.table.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001)
-                self.table.center = CGPoint(x: CGRectGetMidX(self.frame), y: CGRectGetMinY(self.frame))
+                self.table.transform = CGAffineTransform.identity.scaledBy(x: 0.001, y: 0.001)
+                self.table.center = CGPoint(x: self.frame.midX, y: self.frame.minY)
                 self.table.alpha = 0
                 
                 }, completion: { (didFinish) -> Void in
                     
                     self.table.removeFromSuperview()
-                    self.userInteractionEnabled = true
-                    self.selected = false
+                    self.isUserInteractionEnabled = true
+                    self.isSelected = false
                     self.delegate.dropDownTableDidDisappear?(self)
             })
             
             break
         }
+    }
+    
+    func didSelect(comp: (String, Int) -> Void) {
+        comp("Fool", 3)
+        //print("Selected option: \(option) at index: \(index)")
+        
+        
     }
     
     // UITableView DataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "UIDropDownCell"
         
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         
         if cell == nil {
-            cell = UITableViewCell(style: .Default, reuseIdentifier: cellIdentifier)
+            cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         
         cell?.textLabel?.font = font
         cell?.textLabel?.text = "\(options[indexPath.row])"
-        cell?.accessoryType = indexPath.row == selectedIndex ? .Checkmark : .None
-        cell?.selectionStyle = .None
+        cell?.accessoryType = indexPath.row == selectedIndex ? .checkmark : .none
+        cell?.selectionStyle = .none
         
         return cell!
     }
     
     // UITableView Delegate
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedIndex = indexPath.row
         
@@ -231,9 +241,9 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         title.alpha = 0.0
         title.text = "\(self.options[indexPath.row])"
         
-        UIView.animateWithDuration(0.6) { () -> Void in
+        UIView.animate(withDuration: 0.6, animations: { () -> Void in
             self.title.alpha = 1.0
-        }
+        }) 
         
         tableView.reloadData()
         
