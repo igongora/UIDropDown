@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="UIDropDown" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UK9-HL-n42">
+                                <segments>
+                                    <segment title="Default"/>
+                                    <segment title="Bouncing"/>
+                                    <segment title="Classic"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your country..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mj2-a0-Vo9">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="qVO-AL-Vcj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Mj2-a0-Vo9" secondAttribute="bottom" constant="20" symbolic="YES" id="1fw-rQ-m11"/>
+                            <constraint firstItem="UK9-HL-n42" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="61Y-tc-lJF"/>
+                            <constraint firstItem="Mj2-a0-Vo9" firstAttribute="leading" secondItem="UK9-HL-n42" secondAttribute="leading" id="CbU-Jt-IiX"/>
+                            <constraint firstItem="UK9-HL-n42" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Np6-Q7-bv0"/>
+                            <constraint firstItem="Mj2-a0-Vo9" firstAttribute="trailing" secondItem="UK9-HL-n42" secondAttribute="trailing" id="jdb-vP-YbU"/>
+                            <constraint firstItem="Mj2-a0-Vo9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="sxR-Gw-riR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="Mj2-a0-Vo9" id="fES-WI-fqX"/>
+                        <outlet property="segmented" destination="UK9-HL-n42" id="gfS-BL-v6M"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="943.125" y="258.80281690140845"/>
+        </scene>
+    </scenes>
+</document>
