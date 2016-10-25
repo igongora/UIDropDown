@@ -28,7 +28,8 @@ The delegate method will return the string and index selected
 ## Requirements
 
 - iOS 8.0+
-- Xcode 7.0+
+- Xcode 8.0+
+- Swift 3.0+
 
 ## Author
 
