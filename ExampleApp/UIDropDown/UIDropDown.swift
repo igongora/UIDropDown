@@ -8,34 +8,34 @@
 
 import UIKit
 
-enum UIDropDownAnimationType: Int {
+public enum UIDropDownAnimationType: Int {
     case Default
     case Bouncing
     case Classic
 }
 
-class UIDropDown: UIControl {
+public class UIDropDown: UIControl {
     
     fileprivate var title: UILabel!
     fileprivate var arrow: Arrow!
     fileprivate var table: UITableView!
     
-    fileprivate(set) var selectedIndex: Int?
-    var options = [String]()
-    var hideOptionsWhenSelect = false
-    var placeholder: String! {
+    public fileprivate(set) var selectedIndex: Int?
+    public var options = [String]()
+    public var hideOptionsWhenSelect = false
+    public var placeholder: String! {
         didSet {
             title.text = placeholder
             title.adjustsFontSizeToFitWidth = true
         }
     }
-    var tint: UIColor? {
+    public var tint: UIColor? {
         didSet {
             title.textColor = textColor ?? tint
             arrow.backgroundColor = tint
         }
     }
-    var arrowPadding: CGFloat = 7.0 {
+    public var arrowPadding: CGFloat = 7.0 {
         didSet{
             let size = arrow.superview!.frame.size.width-(arrowPadding*2)
             arrow.frame = CGRect(x: arrowPadding, y: arrowPadding, width: size, height: size)
@@ -43,70 +43,70 @@ class UIDropDown: UIControl {
     }
     
     // Text
-    var font: String? {
+    public var font: String? {
         didSet {
             title.font = UIFont(name: font!, size: fontSize)
         }
     }
-    var fontSize: CGFloat = 17.0 {
+    public var fontSize: CGFloat = 17.0 {
         didSet{
             title.font = title.font.withSize(fontSize)
         }
     }
-    var textColor: UIColor? {
+    public var textColor: UIColor? {
         didSet{
             title.textColor = textColor
         }
     }
-    var textAlignment: NSTextAlignment? {
+    public var textAlignment: NSTextAlignment? {
         didSet{
             title.textAlignment = textAlignment!
         }
     }
     
-    var optionsFont: String?
-    var optionsSize: CGFloat = 17.0
-    var optionsTextColor: UIColor?
-    var optionsTextAlignment: NSTextAlignment?
+    public var optionsFont: String?
+    public var optionsSize: CGFloat = 17.0
+    public var optionsTextColor: UIColor?
+    public var optionsTextAlignment: NSTextAlignment?
     
     // Border
-    var cornerRadius: CGFloat = 3.0 {
+    public var cornerRadius: CGFloat = 3.0 {
         didSet{
             self.layer.cornerRadius = cornerRadius
         }
     }
-    var borderWidth: CGFloat = 0.5 {
+    public var borderWidth: CGFloat = 0.5 {
         didSet{
             self.layer.borderWidth = borderWidth
         }
     }
-    var borderColor: UIColor = .black {
+    public var borderColor: UIColor = .black {
         didSet{
             self.layer.borderColor = borderColor.cgColor
         }
     }
     
-    var optionsCornerRadius: CGFloat = 3.0 {
+    public var optionsCornerRadius: CGFloat = 3.0 {
         didSet{
             table.layer.cornerRadius = optionsCornerRadius
         }
     }
-    var optionsBorderWidth: CGFloat = 0.5 {
+    public var optionsBorderWidth: CGFloat = 0.5 {
         didSet{
             table.layer.borderWidth = optionsBorderWidth
         }
     }
-    var optionsBorderColor: UIColor = .black {
+    public var optionsBorderColor: UIColor = .black {
         didSet{
             table.layer.borderColor = optionsBorderColor.cgColor
         }
     }
     
     // Table Configurations
-    var animationType: UIDropDownAnimationType = .Default
-    var tableHeight: CGFloat = 100.0
-    var rowHeight: CGFloat?
-    var rowBackgroundColor: UIColor?
+    public var animationType: UIDropDownAnimationType = .Default
+    public var tableHeight: CGFloat = 100.0
+    public var rowHeight: CGFloat?
+    public var rowBackgroundColor: UIColor?
     
     // Closures
     fileprivate var privatedidSelect: (String, Int) -> () = {option, index in }
@@ -116,18 +116,18 @@ class UIDropDown: UIControl {
     fileprivate var privateTableDidDisappear: () -> () = { }
     
     // Init
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-
-    required init(coder aDecoder: NSCoder) {
+    
+    public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         setup()
     }
     
     // Class methods
-    func resign() -> Bool {
+    public func resign() -> Bool {
         if isSelected {
             hideTable()
         }
@@ -147,6 +147,7 @@ class UIDropDown: UIControl {
                                                   y: 0,
                                                   width: title.frame.height,
                                                   height: title.frame.height))
+        arrowContainer.isUserInteractionEnabled = false
         self.addSubview(arrowContainer)
         
         arrow = Arrow(origin: CGPoint(x: arrowPadding,
@@ -186,7 +187,7 @@ class UIDropDown: UIControl {
         
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.arrow.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
-        }) 
+        })
         
         switch animationType {
         case .Default:
@@ -205,14 +206,14 @@ class UIDropDown: UIControl {
                             
                             self.arrow.position = .up
                             
-                            },
+                },
                            completion: { (didFinish) -> Void in
                             self.isUserInteractionEnabled = true
                             self.privateTableDidAppear()
             })
         case .Bouncing:
             table.transform = CGAffineTransform.identity.scaledBy(x: 0.001, y: 0.001)
-
+            
             UIView.animate(withDuration: 0.9,
                            delay: 0,
                            usingSpringWithDamping: 0.5,
@@ -229,7 +230,7 @@ class UIDropDown: UIControl {
                             
                             self.arrow.position = .up
                             
-                            },
+                },
                            completion: { (didFinish) -> Void in
                             self.isUserInteractionEnabled = true
                             self.privateTableDidAppear()
@@ -240,7 +241,7 @@ class UIDropDown: UIControl {
                            delay: 0.0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0.5,
-                           options: .curveEaseInOut, animations: { 
+                           options: .curveEaseInOut, animations: {
                             
                             self.table.frame = CGRect(x: self.frame.minX,
                                                       y: self.frame.maxY+5,
@@ -309,34 +310,34 @@ class UIDropDown: UIControl {
     }
     
     // Actions Methods
-    func didSelect(completion: @escaping (_ option: String, _ index: Int) -> ()) {
+    public func didSelect(completion: @escaping (_ option: String, _ index: Int) -> ()) {
         privatedidSelect = completion
     }
     
-    func tableWillAppear(completion: @escaping () -> ()) {
+    public func tableWillAppear(completion: @escaping () -> ()) {
         privateTableWillAppear = completion
     }
     
-    func tableDidAppear(completion: @escaping () -> ()) {
+    public func tableDidAppear(completion: @escaping () -> ()) {
         privateTableDidAppear = completion
     }
     
-    func tableWillDisappear(completion: @escaping () -> ()) {
+    public func tableWillDisappear(completion: @escaping () -> ()) {
         privateTableWillDisappear = completion
     }
     
-    func tableDidDisappear(completion: @escaping () -> ()) {
+    public func tableDidDisappear(completion: @escaping () -> ()) {
         privateTableDidDisappear = completion
     }
 }
 
 extension UIDropDown: UITableViewDataSource {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cellIdentifier = "UIDropDownCell"
         
@@ -358,11 +359,11 @@ extension UIDropDown: UITableViewDataSource {
         cell!.selectionStyle = .none
         
         return cell!
-        }
+    }
 }
 
 extension UIDropDown: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         selectedIndex = (indexPath as NSIndexPath).row
         
@@ -385,6 +386,7 @@ extension UIDropDown: UITableViewDelegate {
 }
 
 // Arrow
+
 enum Position {
     case left
     case down
