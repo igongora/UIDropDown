@@ -10,23 +10,23 @@ UIDropDown allows you to pick an option in a beautiful table just like dropdowns
 Use UIDropDown it's as easy as set the array of strings you want to show and a placeholder
 
 ```swift
-        drop = UIDropDown(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
-        drop.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
-        drop.placeholder = "Select your country..."
-        drop.options = ["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"]
-        drop.didSelect { (option, index) in
-            self.label.text = "You just select \(option) at index: \(index)"
-            print("You just select: \(option) at index: \(index)")
-        }
-        self.view.addSubview(drop) 
+drop = UIDropDown(frame: CGRect(x: 0, y: 0, width: 200, height: 30))
+drop.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
+drop.placeholder = "Select your country..."
+drop.options = ["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"]
+drop.didSelect { (option, index) in
+     self.label.text = "You just select \(option) at index: \(index)"
+     print("You just select: \(option) at index: \(index)")
+     }
+self.view.addSubview(drop) 
 ```
 
 The "didSelect" method will return the string and index selected
 ```swift
-    drop.didSelect { (option, index) in
-            self.label.text = "You just select \(option) at index: \(index)"
-            print("You just select: \(option) at index: \(index)")
-        }
+drop.didSelect { (option, index) in
+     self.label.text = "You just select \(option) at index: \(index)"
+     print("You just select: \(option) at index: \(index)")
+     }
 ```
 
 ## Properties
