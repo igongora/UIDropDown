@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIDropDownDelegate {
+class ViewController: UIViewController {
     
     @IBOutlet weak var segmented: UISegmentedControl!
     var drop: UIDropDown!
+    @IBOutlet weak var label: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

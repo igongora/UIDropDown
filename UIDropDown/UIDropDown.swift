@@ -43,13 +43,93 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
             title.adjustsFontSizeToFitWidth = true
         }
     }
-    override var tintColor: UIColor! {
+    var tint: UIColor? {
         didSet {
-            title.textColor = tintColor
-            arrow.textColor = tintColor
+            title.textColor = textColor ?? tint
+            arrow.backgroundColor = tint
+        }
+    }
+    var arrowPadding: CGFloat = 7.0 {
+        didSet{
+            let size = arrow.superview!.frame.size.width-(arrowPadding*2)
+            arrow.frame = CGRect(x: arrowPadding, y: arrowPadding, width: size, height: size)
         }
     }
     
+    // Text
+    var font: String? {
+        didSet {
+            title.font = UIFont(name: font!, size: fontSize)
+        }
+    }
+    var fontSize: CGFloat = 17.0 {
+        didSet{
+            title.font = title.font.withSize(fontSize)
+        }
+    }
+    var textColor: UIColor? {
+        didSet{
+            title.textColor = textColor
+        }
+    }
+    var textAlignment: NSTextAlignment? {
+        didSet{
+            title.textAlignment = textAlignment!
+        }
+    }
+    
+    var optionsFont: String?
+    var optionsSize: CGFloat = 17.0
+    var optionsTextColor: UIColor?
+    var optionsTextAlignment: NSTextAlignment?
+    
+    // Border
+    var cornerRadius: CGFloat = 3.0 {
+        didSet{
+            self.layer.cornerRadius = cornerRadius
+        }
+    }
+    var borderWidth: CGFloat = 0.5 {
+        didSet{
+            self.layer.borderWidth = borderWidth
+        }
+    }
+    var borderColor: UIColor = .black {
+        didSet{
+            self.layer.borderColor = borderColor.cgColor
+        }
+    }
+    
+    var optionsCornerRadius: CGFloat = 3.0 {
+        didSet{
+            table.layer.cornerRadius = optionsCornerRadius
+        }
+    }
+    var optionsBorderWidth: CGFloat = 0.5 {
+        didSet{
+            table.layer.borderWidth = optionsBorderWidth
+        }
+    }
+    var optionsBorderColor: UIColor = .black {
+        didSet{
+            table.layer.borderColor = optionsBorderColor.cgColor
+        }
+    }
+    
+    // Table Configurations
+    var animationType: UIDropDownAnimationType = .Default
+    var tableHeight: CGFloat = 100.0
+    var rowHeight: CGFloat?
+    var rowBackgroundColor: UIColor?
+    
+    // Closures
+    fileprivate var privatedidSelect: (String, Int) -> () = {option, index in }
+    fileprivate var privateTableWillAppear: () -> () = { }
+    fileprivate var privateTableDidAppear: () -> () = { }
+    fileprivate var privateTableWillDisappear: () -> () = { }
+    fileprivate var privateTableDidDisappear: () -> () = { }
+    
+    // Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -60,7 +140,13 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         setup()
     }
     
-    func setup() {
+    // Class methods
+    func resign() -> Bool {
+        if isSelected {
+            hideTable()
+        }
+        return true
+    }
     
         self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
@@ -95,12 +181,21 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
             hideTable()
         }
         
-        return true
+        self.layer.cornerRadius = cornerRadius
+        self.layer.borderWidth = borderWidth
+        self.layer.borderColor = borderColor.cgColor
+        self.addTarget(self, action: #selector(touch), for: .touchUpInside)
     }
     
-    func showTable() {
+    @objc fileprivate func touch() {
+        isSelected = !isSelected
+        self.isUserInteractionEnabled = false
+        isSelected ? showTable() : hideTable()
+    }
+    
+    fileprivate func showTable() {
         
-        delegate.dropDownTableWillAppear?(self)
+        privateTableWillAppear()
         
         table = UITableView(frame: CGRect(x: self.frame.minX, y: self.frame.minY, width: self.frame.width, height: self.frame.height))
         table.dataSource = self
@@ -109,6 +204,10 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         table.layer.borderWidth = 1.0
         table.layer.borderColor = UIColor.black.cgColor
         table.alpha = 0
+        table.layer.cornerRadius = optionsCornerRadius
+        table.layer.borderWidth = optionsBorderWidth
+        table.layer.borderColor = optionsBorderColor.cgColor
+        table.rowHeight = rowHeight ?? table.rowHeight
         self.superview?.insertSubview(table, belowSubview: self)
         
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
@@ -145,14 +244,32 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
                     self.isUserInteractionEnabled = true
                     self.delegate.dropDownTableDidAppear?(self)
             })
+        case .Classic:
             
-            break
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.0,
+                           usingSpringWithDamping: 1,
+                           initialSpringVelocity: 0.5,
+                           options: .curveEaseInOut, animations: { 
+                            
+                            self.table.frame = CGRect(x: self.frame.minX,
+                                                      y: self.frame.maxY+5,
+                                                      width: self.frame.width,
+                                                      height: self.tableHeight)
+                            self.table.alpha = 1
+                            
+                            self.arrow.position = .up
+                            
+                }, completion: { (finished) in
+                    self.isUserInteractionEnabled = true
+                    self.privateTableDidAppear()
+            })
         }
     }
     
-    func hideTable() {
+    fileprivate func hideTable() {
         
-        delegate.dropDownTableWillDisappear?(self)
+        privateTableWillDisappear()
         
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
             self.arrow.transform = CGAffineTransform(rotationAngle: 0)
@@ -192,12 +309,32 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
                     self.isSelected = false
                     self.delegate.dropDownTableDidDisappear?(self)
             })
-            
-            break
         }
     }
     
-    // UITableView DataSource
+    // Actions Methods
+    func didSelect(completion: @escaping (_ option: String, _ index: Int) -> ()) {
+        privatedidSelect = completion
+    }
+    
+    func tableWillAppear(completion: @escaping () -> ()) {
+        privateTableWillAppear = completion
+    }
+    
+    func tableDidAppear(completion: @escaping () -> ()) {
+        privateTableDidAppear = completion
+    }
+    
+    func tableWillDisappear(completion: @escaping () -> ()) {
+        privateTableWillDisappear = completion
+    }
+    
+    func tableDidDisappear(completion: @escaping () -> ()) {
+        privateTableDidDisappear = completion
+    }
+}
+
+extension UIDropDown: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return options.count
@@ -241,5 +378,7 @@ class UIDropDown: UIControl, UITableViewDataSource, UITableViewDelegate {
         if hideOptionsWhenSelect {
             hideTable()
         }
+        
+        privatedidSelect("\(self.options[indexPath.row])", selectedIndex!)
     }
 }
