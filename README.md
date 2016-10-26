@@ -6,6 +6,30 @@ An elegant dropdown for iOS written in Swift.
 # Overview
 UIDropDown allows you to pick an option in a beautiful table just like dropdowns in web. It contains 3 differents animations to present the options table and can be modified in many ways.
 
+## Installation
+
+### CocoaPods
+
+[CocoaPods](http://cocoapods.org) is a dependency manager for Cocoa projects. You can install it with the following command:
+
+```bash
+$ gem install cocoapods
+```
+
+To integrate UIDropDown into your Xcode project using CocoaPods, specify it in your `Podfile`:
+
+```ruby
+target '<Your Target Name>' do
+    pod 'UIDropDown'
+end
+```
+
+Then, run the following command:
+
+```bash
+$ pod install
+```
+
 # Usage
 Use UIDropDown it's as easy as set the array of strings you want to show and a placeholder
 
