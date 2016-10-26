@@ -34,10 +34,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        drop.resign()
-    }
-    
     func segmentedDidChange(_ sender: UISegmentedControl) {
         let index = sender.selectedSegmentIndex
         drop.animationType = UIDropDownAnimationType(rawValue: index)!
