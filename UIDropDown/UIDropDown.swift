@@ -120,7 +120,7 @@ public class UIDropDown: UIControl {
         super.init(frame: frame)
         setup()
     }
-
+    
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
         setup()
@@ -164,7 +164,6 @@ public class UIDropDown: UIControl {
     
     @objc fileprivate func touch() {
         isSelected = !isSelected
-        self.isUserInteractionEnabled = false
         isSelected ? showTable() : hideTable()
     }
     
@@ -185,10 +184,6 @@ public class UIDropDown: UIControl {
         table.rowHeight = rowHeight ?? table.rowHeight
         self.superview?.insertSubview(table, belowSubview: self)
         
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            self.arrow.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(M_PI)) / 180.0)
-        }) 
-        
         switch animationType {
         case .Default:
             UIView.animate(withDuration: 0.9,
@@ -206,14 +201,13 @@ public class UIDropDown: UIControl {
                             
                             self.arrow.position = .up
                             
-                            },
+                },
                            completion: { (didFinish) -> Void in
-                            self.isUserInteractionEnabled = true
                             self.privateTableDidAppear()
             })
         case .Bouncing:
             table.transform = CGAffineTransform.identity.scaledBy(x: 0.001, y: 0.001)
-
+            
             UIView.animate(withDuration: 0.9,
                            delay: 0,
                            usingSpringWithDamping: 0.5,
@@ -230,9 +224,8 @@ public class UIDropDown: UIControl {
                             
                             self.arrow.position = .up
                             
-                            },
+                },
                            completion: { (didFinish) -> Void in
-                            self.isUserInteractionEnabled = true
                             self.privateTableDidAppear()
             })
         case .Classic:
@@ -241,7 +234,7 @@ public class UIDropDown: UIControl {
                            delay: 0.0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0.5,
-                           options: .curveEaseInOut, animations: { 
+                           options: .curveEaseInOut, animations: {
                             
                             self.table.frame = CGRect(x: self.frame.minX,
                                                       y: self.frame.maxY+5,
@@ -252,7 +245,6 @@ public class UIDropDown: UIControl {
                             self.arrow.position = .up
                             
                 }, completion: { (finished) in
-                    self.isUserInteractionEnabled = true
                     self.privateTableDidAppear()
             })
         }
@@ -280,7 +272,6 @@ public class UIDropDown: UIControl {
                 },
                            completion: { (didFinish) -> Void in
                             self.table.removeFromSuperview()
-                            self.isUserInteractionEnabled = true
                             self.isSelected = false
                             self.privateTableDidDisappear()
             })
@@ -302,7 +293,6 @@ public class UIDropDown: UIControl {
                 },
                            completion: { (didFinish) -> Void in
                             self.table.removeFromSuperview()
-                            self.isUserInteractionEnabled = true
                             self.isSelected = false
                             self.privateTableDidDisappear()
             })
@@ -359,7 +349,7 @@ extension UIDropDown: UITableViewDataSource {
         cell!.selectionStyle = .none
         
         return cell!
-        }
+    }
 }
 
 extension UIDropDown: UITableViewDelegate {
