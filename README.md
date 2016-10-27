@@ -58,18 +58,18 @@ drop.center = CGPoint(x: self.view.frame.midX, y: self.view.frame.midY)
 drop.placeholder = "Select your country..."
 drop.options = ["Mexico", "USA", "England", "France", "Germany", "Spain", "Italy", "Canada"]
 drop.didSelect { (option, index) in
-     self.label.text = "You just select \(option) at index: \(index)"
-     print("You just select: \(option) at index: \(index)")
-     }
+                     self.label.text = "You just select \(option) at index: \(index)"
+                     print("You just select: \(option) at index: \(index)")
+               }
 self.view.addSubview(drop) 
 ```
 
 The "didSelect" method will return the string and index selected
 ```swift
 drop.didSelect { (option, index) in
-     self.label.text = "You just select \(option) at index: \(index)"
-     print("You just select: \(option) at index: \(index)")
-     }
+                     self.label.text = "You just select \(option) at index: \(index)"
+                     print("You just select: \(option) at index: \(index)")
+               }
 ```
 
 ## Requirements
