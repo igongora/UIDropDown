@@ -4,7 +4,7 @@ An elegant dropdown for iOS written in Swift.
 ![](ddgif.gif)
 
 # Overview
-UIDropDown allows you to pick an option in a beautiful table just like dropdowns in web. It contains 3 differents animations to present the options table and can be modified in many ways.
+UIDropDown allows you to pick an option in a table just like dropdowns in web. It contains 3 differents animations to present the options table and can be modified in many ways.
 
 ## Installation
 
